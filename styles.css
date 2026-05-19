@@ -1,0 +1,578 @@
+/* ProvenanceOS · imaging demo — shared stylesheet
+ *
+ * Three scenes share a single stylesheet so the visual contrast is
+ * carried entirely by class names per scene. The aesthetic decisions:
+ *
+ *   Scene A — busy, cluttered, conflicting; cognitive load visible.
+ *   Scene B — calm, structured, verifiable; coherent.
+ *   Scene C — Scene B + a soft operational-uncertainty panel; aware,
+ *             not alarming.
+ *
+ * No icon fonts, no remote assets. Vanilla JavaScript only (inlined in
+ * the scene pages, used for click-to-expand on the imaging strip).
+ */
+
+/* ── Page foundation ─────────────────────────────────────────────── */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+        Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #1b1f24;
+    background: #f5f6f8;
+}
+
+a {
+    color: #1f5fa8;
+    text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+.page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 28px 48px;
+}
+
+.scene-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0 20px;
+    border-bottom: 1px solid #d8dce1;
+    margin-bottom: 24px;
+}
+.scene-nav .left { font-weight: 600; color: #44505d; }
+.scene-nav .right a {
+    margin-left: 16px;
+    color: #44505d;
+}
+
+h1 { font-size: 22px; margin: 0 0 6px; }
+h2 { font-size: 16px; margin: 24px 0 10px; }
+h3 { font-size: 14px; margin: 14px 0 6px; }
+
+.subtitle {
+    font-size: 13px;
+    color: #5a6470;
+    margin: 0 0 18px;
+}
+
+/* ── Index page ──────────────────────────────────────────────────── */
+
+.index-hero {
+    background: #fff;
+    border: 1px solid #d8dce1;
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+}
+.index-hero h1 { font-size: 26px; margin-bottom: 12px; }
+.index-hero p { color: #44505d; max-width: 720px; }
+
+.scene-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+.scene-card {
+    background: #fff;
+    border: 1px solid #d8dce1;
+    border-radius: 6px;
+    padding: 20px 22px;
+    transition: border-color 0.15s ease;
+}
+.scene-card:hover { border-color: #1f5fa8; }
+.scene-card .badge {
+    display: inline-block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #5a6470;
+    margin-bottom: 8px;
+}
+.scene-card h2 { margin: 0 0 10px; font-size: 17px; }
+.scene-card p { margin: 0 0 14px; color: #44505d; }
+.scene-card a.cta {
+    display: inline-block;
+    padding: 7px 14px;
+    background: #1f5fa8;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 600;
+}
+.scene-card a.cta:hover { background: #164a87; text-decoration: none; }
+
+/* ── Scene A — fragmentation ─────────────────────────────────────── */
+
+.scene-a-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.system-panel {
+    background: #fff;
+    border: 1px solid #c8cdd3;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+}
+.system-panel .system-header {
+    background: #2c3540;
+    color: #e8ebef;
+    padding: 8px 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+}
+.system-panel.epic .system-header { background: #6b3aa0; }
+.system-panel.pacs .system-header { background: #2c5d8e; }
+.system-panel.care-everywhere .system-header { background: #1e6649; }
+.system-panel.outside-fax .system-header { background: #7a4a1e; }
+.system-panel.payer-portal .system-header { background: #5d2e2e; }
+.system-panel.scheduling .system-header { background: #4a4a4a; }
+
+.system-panel .system-body {
+    padding: 10px 12px;
+    font-size: 12.5px;
+}
+.system-panel .system-body dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 4px 10px;
+    margin: 0;
+}
+.system-panel .system-body dt {
+    color: #5a6470;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.system-panel .system-body dd { margin: 0; color: #1b1f24; }
+
+.conflict { background: #ffd8d8; padding: 0 4px; border-radius: 2px; }
+.missing { background: #fff3c4; padding: 0 4px; border-radius: 2px;
+           font-style: italic; color: #6b5400; }
+.unverified { color: #a04545; }
+
+.fragmentation-summary {
+    margin-top: 22px;
+    background: #fff;
+    border-left: 3px solid #a04545;
+    padding: 14px 18px;
+    color: #44505d;
+    font-size: 13px;
+}
+.fragmentation-summary strong { color: #a04545; }
+
+/* ── Scene B — substrate reconstruction ──────────────────────────── */
+
+/* Patient vignette, shown at the top of Scene B and Scene C */
+.patient-vignette {
+    background: #fff;
+    border: 1px solid #d8dce1;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+}
+.patient-vignette .vignette-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #5a6470;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.patient-vignette p {
+    margin: 0;
+    color: #1b1f24;
+    line-height: 1.55;
+    max-width: 880px;
+}
+
+/* Care-arc card containing the phase strip + imaging strip + detail */
+.care-arc-card {
+    background: #fff;
+    border: 1px solid #d8dce1;
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+}
+.care-arc-header h2 { margin: 0; }
+.care-arc-sub {
+    font-size: 12px;
+    color: #5a6470;
+    margin: 4px 0 14px;
+}
+
+/* Care-arc phase strip */
+.phase-strip {
+    display: flex;
+    align-items: flex-start;
+    overflow-x: auto;
+    padding: 8px 0 14px;
+    gap: 0;
+}
+.phase-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 130px;
+    padding: 0 6px;
+    text-align: center;
+}
+.phase-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #cbd2d9;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #cbd2d9;
+    margin-bottom: 6px;
+}
+.phase-node.phase-complete .phase-dot {
+    background: #1c6b46;
+    box-shadow: 0 0 0 2px #1c6b46;
+}
+.phase-node.phase-current .phase-dot {
+    background: #1f5fa8;
+    box-shadow: 0 0 0 3px #1f5fa8;
+    transform: scale(1.15);
+}
+.phase-node .phase-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1b1f24;
+    line-height: 1.3;
+}
+.phase-node.phase-current .phase-name { color: #1f5fa8; }
+.phase-node .phase-window {
+    font-size: 11px;
+    color: #5a6470;
+    margin-top: 2px;
+}
+.phase-link {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 2px;
+    background: #cbd2d9;
+    margin-top: 12px;
+}
+
+.imaging-rail-label {
+    margin: 18px 0 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #5a6470;
+    font-weight: 700;
+}
+
+/* Imaging strip — clickable chips for each imaging event */
+.imaging-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.img-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 180px;
+    max-width: 220px;
+    background: #fff;
+    border: 1px solid #cbd2d9;
+    border-radius: 5px;
+    padding: 10px 12px;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+.img-chip:hover { border-color: #1f5fa8; }
+.img-chip.selected {
+    border-color: #1f5fa8;
+    box-shadow: 0 0 0 2px rgba(31, 95, 168, 0.18);
+}
+.img-chip.scheduled { background: #f4f8fb; }
+.img-chip.off-arc {
+    background: #fbf4dc;
+    border-color: #e0d9c2;
+}
+.img-chip.current {
+    background: #eef5ee;
+    border-color: #1c6b46;
+    border-left: 4px solid #1c6b46;
+}
+.img-chip .chip-date {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #5a6470;
+    font-weight: 700;
+}
+.img-chip.off-arc .chip-date { color: #7a5a00; }
+.img-chip.current .chip-date { color: #1c6b46; }
+.img-chip .chip-label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+.img-chip .chip-meta {
+    font-size: 12px;
+    color: #44505d;
+    margin-top: 2px;
+}
+.img-chip .chip-inst {
+    font-size: 11px;
+    color: #5a6470;
+    margin-top: 2px;
+}
+.img-chip .chip-awareness {
+    margin-top: 8px;
+    font-size: 11px;
+}
+.awareness.ok { color: #1c6b46; }
+.awareness.gap { color: #a04545; font-weight: 600; }
+
+/* Detail panel below the imaging strip */
+.event-detail-region {
+    margin-top: 10px;
+    border-top: 1px solid #e3e6ea;
+    padding-top: 14px;
+}
+.event-detail-placeholder {
+    font-size: 12px;
+    color: #5a6470;
+    font-style: italic;
+}
+.event-detail {
+    background: #f7f9fb;
+    border: 1px solid #d8dce1;
+    border-radius: 5px;
+    padding: 14px 16px;
+}
+.event-detail-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.event-detail-date {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #1f5fa8;
+    font-weight: 700;
+}
+.event-detail-title {
+    font-size: 14px;
+    font-weight: 600;
+}
+.event-detail-dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 4px 12px;
+    margin: 0 0 10px;
+    font-size: 13px;
+}
+.event-detail-dl dt {
+    color: #5a6470;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.event-detail-dl dd { margin: 0; }
+.event-detail-body {
+    margin: 0;
+    font-size: 13px;
+    color: #1b1f24;
+    line-height: 1.5;
+}
+
+/* Verified pill — hash-free, no raw payload */
+.verified-pill {
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: #e6f3ec;
+    color: #1c6b46;
+    padding: 1px 7px;
+    border-radius: 3px;
+    border: 1px solid #b9d9c6;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+/* Substrate observation blocks */
+.observations-card {
+    background: #fff;
+    border: 1px solid #d8dce1;
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+}
+.observations-card h2 { margin-top: 0; }
+.substrate-observation {
+    background: #f3f6fa;
+    border-left: 3px solid #1f5fa8;
+    padding: 12px 16px;
+    margin-top: 12px;
+    color: #1b1f24;
+}
+.substrate-observation .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #1f5fa8;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.substrate-observation .headline {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.substrate-observation .details {
+    font-size: 13px;
+    color: #44505d;
+    line-height: 1.5;
+}
+
+/* Specialist authorization touchpoints */
+.specialist-actions {
+    margin-top: 0;
+    background: #fff;
+    border: 1px solid #d8dce1;
+    border-radius: 6px;
+    padding: 16px 20px;
+}
+.specialist-actions h2 { margin-top: 0; }
+.specialist-actions ul {
+    margin: 6px 0 0;
+    padding-left: 20px;
+    color: #44505d;
+}
+.specialist-actions li { margin-bottom: 10px; }
+.auth-summary {
+    font-size: 12px;
+    color: #5a6470;
+    line-height: 1.5;
+    display: inline-block;
+    margin-top: 2px;
+}
+.actions-footer {
+    margin: 14px 0 0;
+    font-size: 12px;
+    color: #5a6470;
+}
+.ack-pill {
+    display: inline-block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: #fff7e0;
+    color: #7a5a00;
+    padding: 2px 7px;
+    border-radius: 3px;
+    border: 1px solid #e5d39a;
+    margin-left: 6px;
+}
+
+/* ── Scene C — augmented cognition ───────────────────────────────── */
+
+.scene-c-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.augmentation-panel {
+    background: #fff;
+    border: 1px solid #e0d9c2;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.augmentation-panel .aug-header {
+    background: #fbf4dc;
+    border-bottom: 1px solid #e0d9c2;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #7a5a00;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.augmentation-panel .aug-body {
+    padding: 16px 18px;
+    font-size: 13px;
+    color: #1b1f24;
+}
+.augmentation-panel .aug-body p { margin: 0 0 10px; }
+.augmentation-panel .aug-body ul {
+    margin: 6px 0 12px;
+    padding-left: 18px;
+    color: #44505d;
+}
+.augmentation-panel .aug-section-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #7a5a00;
+    font-weight: 700;
+    margin: 14px 0 4px;
+}
+.augmentation-panel .aug-footnote {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #5a6470;
+}
+
+.aug-witness-row {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e0d9c2;
+    font-size: 11px;
+    color: #5a6470;
+}
+.aug-witness-row .witness-pill {
+    display: inline-block;
+    background: #f3f6fa;
+    border: 1px solid #c9d4e2;
+    color: #1f5fa8;
+    padding: 1px 7px;
+    border-radius: 3px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ── Footer note shared by every scene ───────────────────────────── */
+
+.scene-footer {
+    margin-top: 36px;
+    padding-top: 16px;
+    border-top: 1px solid #d8dce1;
+    font-size: 11px;
+    color: #6a737d;
+    line-height: 1.6;
+}
+.scene-footer code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: #eef0f3;
+    padding: 1px 5px;
+    border-radius: 3px;
+}

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scene A — Current reality · ProvenanceOS imaging demo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page">
+
+<div class="scene-nav">
+    <div class="left">Scene A — Current reality</div>
+    <div class="right">
+        <a href="index.html">Index</a>
+        <a href="scene_b.html">Scene B →</a>
+    </div>
+</div>
+
+<h1>Six systems. Six views. One person.</h1>
+<p class="subtitle">A specialist opens the chart in advance of a follow-up MR brain study. This is what they see. The cognitive work to reconcile the six panels into a single coherent trajectory happens entirely in their head, before any clinical thinking begins.</p>
+
+<div class="scene-a-grid">
+
+    <!-- Panel 1: Local EMR (Epic-shaped) -->
+    <div class="system-panel epic">
+        <div class="system-header">
+            <span>Local EMR · chart</span>
+            <span>tab 1</span>
+        </div>
+        <div class="system-body">
+            <dl>
+                <dt>Patient</dt><dd>Subject A (Robert)</dd>
+                <dt>DOB</dt><dd>1971-03-12</dd>
+                <dt>MRN</dt><dd><span class="conflict">0042-7281</span></dd>
+                <dt>Insurance</dt><dd>Plan A · group 17C</dd>
+                <dt>Last visit</dt><dd>2025-11-15 · neuro-onc clinic</dd>
+                <dt>Next scheduled</dt><dd>2026-05-17 · MR brain w/wo contrast</dd>
+                <dt>Prior imaging note</dt><dd>References prior MR brain 2025-11; no link to imaging</dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- Panel 2: PACS -->
+    <div class="system-panel pacs">
+        <div class="system-header">
+            <span>PACS · worklist</span>
+            <span>tab 2</span>
+        </div>
+        <div class="system-body">
+            <dl>
+                <dt>Patient</dt><dd>CHEN, ROBERT</dd>
+                <dt>MRN</dt><dd><span class="conflict">MRN-0042-7281</span></dd>
+                <dt>Accession</dt><dd>ACC-NEU-2026-0517-08</dd>
+                <dt>Modality</dt><dd>MR · BRAIN · w/wo contrast</dd>
+                <dt>Scanner</dt><dd>MR-3 · 1.5T</dd>
+                <dt>Prior on disk</dt><dd><span class="missing">none indexed</span></dd>
+                <dt>Outside studies</dt><dd><span class="unverified">1 referenced · not loaded</span></dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- Panel 3: Care Everywhere / outside HIE -->
+    <div class="system-panel care-everywhere">
+        <div class="system-header">
+            <span>Outside HIE · query result</span>
+            <span>tab 3</span>
+        </div>
+        <div class="system-body">
+            <dl>
+                <dt>Patient</dt><dd>Chen, R.</dd>
+                <dt>DOB</dt><dd><span class="conflict">1971-03-21</span></dd>
+                <dt>Outside MRN</dt><dd>HOP-PACIFIC-887341</dd>
+                <dt>Documents</dt><dd>1 PDF report · 2025-11-15 · MR brain · 3T</dd>
+                <dt>Imaging study</dt><dd><span class="missing">DICOM not retrieved · request open 3d</span></dd>
+                <dt>Linking decision</dt><dd><span class="unverified">probable match · operator confirm</span></dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- Panel 4: Fax inbox / outside report -->
+    <div class="system-panel outside-fax">
+        <div class="system-header">
+            <span>Document inbox · faxed report</span>
+            <span>tab 4</span>
+        </div>
+        <div class="system-body">
+            <dl>
+                <dt>Source</dt><dd>Hospital Pacific · neuro-radiology</dd>
+                <dt>Subject</dt><dd>Chen Robert R</dd>
+                <dt>Report date</dt><dd>2025-11-17</dd>
+                <dt>Study date</dt><dd>2025-11-15</dd>
+                <dt>Comparison</dt><dd>References "prior MR 2025-05-04" — no copy attached</dd>
+                <dt>Impression</dt><dd>(prose narrative, scanned PDF)</dd>
+                <dt>Matched to chart</dt><dd><span class="unverified">manual reconciliation pending</span></dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- Panel 5: Payer portal / prior auth -->
+    <div class="system-panel payer-portal">
+        <div class="system-header">
+            <span>Payer portal · prior auth</span>
+            <span>tab 5</span>
+        </div>
+        <div class="system-body">
+            <dl>
+                <dt>Member</dt><dd>R Chen</dd>
+                <dt>Member ID</dt><dd><span class="conflict">A-77281042</span></dd>
+                <dt>Procedure</dt><dd>MRI brain w/wo contrast · CPT 70553</dd>
+                <dt>Auth #</dt><dd>PA-3318420</dd>
+                <dt>Auth status</dt><dd><span class="conflict">expires 2026-05-14</span> (3 days ago)</dd>
+                <dt>Coverage</dt><dd>Active · network: in</dd>
+                <dt>Notes</dt><dd>Renewal required prior to read</dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- Panel 6: Scheduling -->
+    <div class="system-panel scheduling">
+        <div class="system-header">
+            <span>Scheduling · radiology</span>
+            <span>tab 6</span>
+        </div>
+        <div class="system-body">
+            <dl>
+                <dt>Patient</dt><dd>CHEN R</dd>
+                <dt>Slot</dt><dd>2026-05-17 · 08:40 · MR-3</dd>
+                <dt>Order</dt><dd>MR brain w/wo contrast</dd>
+                <dt>Order date</dt><dd>2026-04-22</dd>
+                <dt>Indication</dt><dd>"surveillance, neuro-onc follow-up"</dd>
+                <dt>Duplicate detection</dt><dd><span class="conflict">1 candidate · 2026-05-17 · 09:10 · MR-1</span></dd>
+                <dt>Tech note</dt><dd>Outside priors requested via HIE</dd>
+            </dl>
+        </div>
+    </div>
+
+</div>
+
+<div class="fragmentation-summary">
+<strong>What the specialist now has to reconcile, before reading the study:</strong>
+Is the MRN-conflict between Panel 1 and Panel 5 the same patient? Which DOB is correct — Panel 1 or Panel 3? Was the prior at the outside institution acquired on a 3T scanner (Panel 3) when today's study is 1.5T (Panel 2) — and if so, is the comparison even valid? Where is the actual outside DICOM (Panel 3 says request open 3 days)? Is the duplicate slot in Panel 6 a real duplicate, or a worklist artifact? Did the payer authorization actually expire (Panel 5), or is that a stale field? The faxed report in Panel 4 references yet another prior from 2025-05-04 — does that exist anywhere?
+</div>
+
+<div class="scene-footer">
+Scene A is hand-authored fictional content. No real patient data, no real EMR connection. The fragmentation textures (MRN variants, DOB drift, missing DICOM, expired auth, duplicate-slot detection, faxed-PDF reconciliation) are representative of the categories of seam that a substrate-layer reconstruction resolves in Scene B.
+</div>
+
+</div>
+</body>
+</html>
