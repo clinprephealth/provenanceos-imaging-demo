@@ -59,8 +59,34 @@
     }
   }
 
+  function notifyAccess(event, session) {
+    if (window.ClinPrepAccessNotify && session) {
+      window.ClinPrepAccessNotify.send({
+        demo: 'provenanceos-imaging',
+        event: event,
+        label: session.label,
+        sessionExpiresAt: session.expiresAt,
+        page: window.location.pathname.split('/').pop() || 'index.html',
+      });
+    }
+  }
+
+  function onAccessGranted(session) {
+    notifyAccess('login', session);
+  }
+
+  function onSessionOpen(session) {
+    notifyAccess('open', session);
+  }
+
   function showGate() {
-    if (!GATE_ENABLED || readSession()) return;
+    var session = readSession();
+    if (!GATE_ENABLED) return;
+
+    if (session) {
+      onSessionOpen(session);
+      return;
+    }
 
     document.body.classList.add('demo-gate-active');
 
@@ -101,6 +127,7 @@
 
       writeSession(session);
       removeGate(overlay);
+      onAccessGranted(session);
     });
 
     input.focus();
