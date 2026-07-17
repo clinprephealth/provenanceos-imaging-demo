@@ -10,15 +10,9 @@ A three-scene provider-facing demo for ProvenanceOS — longitudinal operational
 - **Scene B — Substrate reconstruction.** A patient vignette grounds the case; a care-arc roadmap shows the full treatment course with every imaging event laid out. The specialist sees what aligns with the care arc and what sits off it. Click any imaging event to expand its detail.
 - **Scene C — Augmented cognition.** Same view plus an operational continuity observation produced by the substrate's probabilistic-augmentation layer. The observation is additive to the deterministic reconstruction — non-authoritative, ACK-gated, structurally subordinate to the substrate's deterministic decisions.
 
-## Access gate
+## Access notifications (optional)
 
-The live demo is password-protected. Access codes are configured in `gate.js`. Each successful login grants a **7-day session** on the same browser.
-
-The gate uses the same session storage key as [clinprephealth-demo](https://clinprephealth.github.io/clinprephealth-demo/), so one login on `clinprephealth.github.io` unlocks both demos.
-
-To **disable the gate later**, set `GATE_ENABLED = false` in `gate.js` and redeploy, or remove the `gate.js` / `gate.css` includes from the HTML pages.
-
-To **add access codes**, edit the `ACCESS_CODES` array in `gate.js`.
+Opening the demo can email the site owner (configured in `access-notify.js`). Password gate files (`gate.js`, `gate.css`) remain in the repo but are not loaded — the demo is public.
 
 ## Form factor
 

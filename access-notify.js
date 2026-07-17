@@ -115,4 +115,19 @@
   }
 
   window.ClinPrepAccessNotify = { send: sendDemoAccessNotification };
+
+  function notifyPageOpen() {
+    sendDemoAccessNotification({
+      demo: 'provenanceos-imaging',
+      event: 'open',
+      label: 'public',
+      page: window.location.pathname.split('/').pop() || 'index.html',
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', notifyPageOpen);
+  } else {
+    notifyPageOpen();
+  }
 })(window);
